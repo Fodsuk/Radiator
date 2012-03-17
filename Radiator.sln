@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radiator.Core", "Radiator.Core\Radiator.Core.csproj", "{A8AE0CD1-0220-43D0-96AA-6F80B2B94838}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CBAB9689-B105-4E49-81E9-679814D83DFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radiator.Tests", "Radiator.Tests\Radiator.Tests.csproj", "{9BD4B75E-E76C-4329-B250-299AEB600EC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F01E3FC-A8FA-4762-AA90-C42830B354E1}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Radiator.vsmdi = Radiator.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Radiator.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8AE0CD1-0220-43D0-96AA-6F80B2B94838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AE0CD1-0220-43D0-96AA-6F80B2B94838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AE0CD1-0220-43D0-96AA-6F80B2B94838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AE0CD1-0220-43D0-96AA-6F80B2B94838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD4B75E-E76C-4329-B250-299AEB600EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD4B75E-E76C-4329-B250-299AEB600EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD4B75E-E76C-4329-B250-299AEB600EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD4B75E-E76C-4329-B250-299AEB600EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BD4B75E-E76C-4329-B250-299AEB600EC6} = {CBAB9689-B105-4E49-81E9-679814D83DFA}
+		{9F01E3FC-A8FA-4762-AA90-C42830B354E1} = {CBAB9689-B105-4E49-81E9-679814D83DFA}
+	EndGlobalSection
+EndGlobal
