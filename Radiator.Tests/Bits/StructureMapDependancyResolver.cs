@@ -6,14 +6,14 @@ namespace Radiator.Tests.Bits
 {
     public class StructureMapDependancyResolver : IDependencyResolver
     {
-        public ICommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : Command
         {
-            return ObjectFactory.TryGetInstance<ICommandValidator<TCommand>>();
+            return ObjectFactory.TryGetInstance<CommandValidator<TCommand>>();
         }
 
-        public ICommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : Command
         {
-            return ObjectFactory.TryGetInstance<ICommandExecutor<TCommand>>();
+            return ObjectFactory.TryGetInstance<CommandExecutor<TCommand>>();
         }
     }
 }

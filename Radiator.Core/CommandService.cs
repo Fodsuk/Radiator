@@ -18,7 +18,7 @@ namespace Radiator.Core
         }
 
 
-        public ProcessResult Execute<TCommand>(TCommand command) where TCommand : ICommand
+        public ProcessResult Execute<TCommand>(TCommand command) where TCommand : Command
         {
             var validationResult = ProcessValidator(command);
 
@@ -27,13 +27,13 @@ namespace Radiator.Core
             return  ProcessExecutor(command);
         }
 
-        public Task<ProcessResult> ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
+        public Task<ProcessResult> ExecuteAsync<TCommand>(TCommand command) where TCommand : Command
         {
             return Task<ProcessResult>.Factory.StartNew(() => Execute(command));
         }
 
         
-        internal ProcessResult ProcessExecutor<TCommand>(TCommand command) where TCommand : ICommand
+        internal ProcessResult ProcessExecutor<TCommand>(TCommand command) where TCommand : Command
         {
             var executor = _config.GetExecutorForCommand(command);
 
@@ -50,7 +50,7 @@ namespace Radiator.Core
             }
         }
 
-        internal ProcessResult ProcessValidator<TCommand>(TCommand command) where TCommand : ICommand
+        internal ProcessResult ProcessValidator<TCommand>(TCommand command) where TCommand : Command
         {
             var validator = _config.GetValidatorForCommand(command);
 

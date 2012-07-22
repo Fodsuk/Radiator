@@ -16,11 +16,11 @@ namespace Radiator.Tests
 
             ObjectFactory.Configure(x =>
             {
-                x.For<ICommandValidator<Command>>().Use<CommandValidator>().Ctor<string>("msg").Is("test");
-                x.For<ICommandValidator<CommandWithSubCommand>>().Use<ValidatorWithSubCommand>();
+                x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test");
+                x.For<CommandValidator<CommandWithSubCommand>>().Use<ValidatorWithSubCommand>();
 
-                x.For<ICommandExecutor<Command>>().Use<CommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
-                x.For<ICommandExecutor<CommandWithSubCommand>>().Use<ExecutorWithSubCommand>();
+                x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
+                x.For<CommandExecutor<CommandWithSubCommand>>().Use<ExecutorWithSubCommand>();
 
             });
 
@@ -41,11 +41,11 @@ namespace Radiator.Tests
 
             ObjectFactory.Configure(x =>
             {
-                x.For<ICommandValidator<Command>>().Use<CommandValidator>().Ctor<string>("msg").Is("test");
-                x.For<ICommandValidator<CommandWithAsyncSubCommand>>().Use<ValidatorWithAsyncSubCommand>();
+                x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test");
+                x.For<CommandValidator<CommandWithAsyncSubCommand>>().Use<ValidatorWithAsyncSubCommand>();
 
-                x.For<ICommandExecutor<Command>>().Use<CommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
-                x.For<ICommandExecutor<CommandWithAsyncSubCommand>>().Use<ExecutorWithAsyncSubCommand>();
+                x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
+                x.For<CommandExecutor<CommandWithAsyncSubCommand>>().Use<ExecutorWithAsyncSubCommand>();
 
             });
 

@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="AsyncCommandExecutionTests.cs" />
     <Compile Include="Bits\CommandThrowsException.cs" />
-    <Compile Include="Bits\Command.cs" />
+    <Compile Include="Bits\ExampleCommand.cs" />
     <Compile Include="Bits\CommandWithAsyncSubCommand.cs" />
     <Compile Include="Bits\CommandWithSubCommand.cs" />
     <Compile Include="Bits\MockDependencyResolver.cs" />

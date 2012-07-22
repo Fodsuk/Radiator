@@ -5,26 +5,26 @@ namespace Radiator.Tests.Bits
 {
     public class MockDependencyResolver : IDependencyResolver
     {
-        private CommandValidator _validator;
-        private CommandExecutor _executor;
+        private ExampleCommandValidator _validator;
+        private ExampleCommandExecutor _executor;
 
-        public void SetValidator(CommandValidator validator)
+        public void SetValidator(ExampleCommandValidator validator)
         {
             _validator = validator;
         }
 
-        public void SetExecutor(CommandExecutor executor)
+        public void SetExecutor(ExampleCommandExecutor executor)
         {
             _executor = executor;
         }
 
 
-        public ICommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : Command
         {
             return (dynamic)_validator;
         }
 
-        public ICommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : Command
         {
             return (dynamic)_executor;
         }

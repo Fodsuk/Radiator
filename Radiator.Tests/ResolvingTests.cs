@@ -21,13 +21,13 @@ namespace Radiator.Tests
             MockDependencyResolver resolver = new MockDependencyResolver();
             const string message = "This is the validator you are looking for";
             
-            resolver.SetValidator(new CommandValidator(message));
+            resolver.SetValidator(new ExampleCommandValidator(message));
 
             Configuration configuration = new Configuration(resolver);
-                                   
-            var validator = configuration.GetValidatorForCommand(new Command());
 
-            var result = validator.ValidateCommand(new Command());
+            var validator = configuration.GetValidatorForCommand(new ExampleCommand());
+
+            var result = validator.ValidateCommand(new ExampleCommand());
 
             Assert.AreEqual(result.Message, message);
 
@@ -39,13 +39,13 @@ namespace Radiator.Tests
             MockDependencyResolver resolver = new MockDependencyResolver();
             const string message = "This is the executor you are looking for";
 
-            resolver.SetExecutor(new CommandExecutor(message));
+            resolver.SetExecutor(new ExampleCommandExecutor(message));
 
             Configuration configuration = new Configuration(resolver);
 
-            var executor = configuration.GetExecutorForCommand(new Command());
+            var executor = configuration.GetExecutorForCommand(new ExampleCommand());
 
-            var result = executor.ExecuteCommand(new CommandService(configuration), new Command());
+            var result = executor.ExecuteCommand(new CommandService(configuration), new ExampleCommand());
 
             Assert.AreEqual(result.Message, message);
 
@@ -59,7 +59,7 @@ namespace Radiator.Tests
         public void Validator_Found()
         {
             ObjectFactory.Configure(
-                x => x.For<ICommandValidator<Command>>().Use<CommandValidator>().Ctor<string>("msg").Is("test")
+                x => x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test")
             );
 
             var resolver = new StructureMapDependancyResolver();
@@ -67,9 +67,9 @@ namespace Radiator.Tests
 
             var configuration = new Configuration(resolver);
 
-            var validator = configuration.GetValidatorForCommand(new Command());
+            var validator = configuration.GetValidatorForCommand(new ExampleCommand());
 
-            var result = validator.ValidateCommand(new Command());
+            var result = validator.ValidateCommand(new ExampleCommand());
 
             Assert.AreEqual(result.Message, message);
 
@@ -79,7 +79,7 @@ namespace Radiator.Tests
         public void Executor_Found()
         {
             ObjectFactory.Configure(
-                x => x.For<ICommandExecutor<Command>>().Use<CommandExecutor>().Ctor<string>("msg").Is("test")
+                x => x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is("test")
             );
 
             var resolver = new StructureMapDependancyResolver();
@@ -87,9 +87,9 @@ namespace Radiator.Tests
 
             var configuration = new Configuration(resolver);
 
-            var executor = configuration.GetExecutorForCommand(new Command());
+            var executor = configuration.GetExecutorForCommand(new ExampleCommand());
 
-            var result = executor.ExecuteCommand(new CommandService(configuration), new Command());
+            var result = executor.ExecuteCommand(new CommandService(configuration), new ExampleCommand());
 
             Assert.AreEqual(result.Message, message);
 

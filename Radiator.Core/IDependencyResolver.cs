@@ -5,7 +5,7 @@ namespace Radiator.Core
 {
     public interface IDependencyResolver
     {
-        ICommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : ICommand;
-        ICommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : ICommand;
+        CommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : Command;
+        CommandExecutor<TCommand> GetExecutor<TCommand>(TCommand command) where TCommand : Command;
     }
 }

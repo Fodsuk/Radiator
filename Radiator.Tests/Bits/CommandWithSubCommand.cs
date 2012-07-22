@@ -4,14 +4,14 @@ using Radiator.Core.Commanding;
 
 namespace Radiator.Tests.Bits
 {
-    public class CommandWithSubCommand : ICommand
+    public class CommandWithSubCommand : Command
     {
         public string String1 { get; set; }
     }
 
-    public class ValidatorWithSubCommand : ICommandValidator<CommandWithSubCommand>
+    public class ValidatorWithSubCommand : CommandValidator<CommandWithSubCommand>
     {
-        public ProcessResult ValidateCommand(CommandWithSubCommand command)
+        public override ProcessResult ValidateCommand(CommandWithSubCommand command)
         {
             return new ProcessResult()
                        {
@@ -21,11 +21,11 @@ namespace Radiator.Tests.Bits
         }
     }
 
-    public class ExecutorWithSubCommand : ICommandExecutor<CommandWithSubCommand>
+    public class ExecutorWithSubCommand : CommandExecutor<CommandWithSubCommand>
     {
-        public ProcessResult ExecuteCommand(ICommandService commandService, CommandWithSubCommand command)
+        public override ProcessResult ExecuteCommand(ICommandService commandService, CommandWithSubCommand command)
         {
-            Command subCommand = new Command()
+            var subCommand = new ExampleCommand()
             {
                 ExampleInt = 62
             };
@@ -37,11 +37,6 @@ namespace Radiator.Tests.Bits
                 Message = string.Format("Sub command message: {0}", subCommandResult.Message),
                 Successful = true
             };
-        }
-
-        public ProcessResult OnException<TException>(TException exception, CommandWithSubCommand command) where TException : Exception
-        {
-            throw new NotImplementedException();
-        }
+        }       
     }
 }

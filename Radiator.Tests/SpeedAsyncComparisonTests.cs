@@ -25,8 +25,8 @@ namespace Radiator.Tests
 
             ObjectFactory.Configure(x =>
                                         {
-                                            x.For<ICommandValidator<SlowCommand>>().Use<SlowValidator>();
-                                            x.For<ICommandExecutor<SlowCommand>>().Use<SlowExecutor>();
+                                            x.For<CommandValidator<SlowCommand>>().Use<SlowValidator>();
+                                            x.For<CommandExecutor<SlowCommand>>().Use<SlowExecutor>();
                                         });
 
             var resolver = new StructureMapDependancyResolver();

@@ -8,13 +8,13 @@ using Radiator.Core.Commanding;
 
 namespace Radiator.Tests.Bits
 {
-    public class SlowCommand : ICommand  
+    public class SlowCommand : Command  
     {
     }
 
-    public class SlowValidator : ICommandValidator<SlowCommand>
+    public class SlowValidator : CommandValidator<SlowCommand>
     {
-        public ProcessResult ValidateCommand(SlowCommand command)
+        public override ProcessResult ValidateCommand(SlowCommand command)
         {
             int sleepFor = 1500;
 
@@ -28,9 +28,9 @@ namespace Radiator.Tests.Bits
         }
     }
 
-    public class SlowExecutor : ICommandExecutor<SlowCommand>
+    public class SlowExecutor : CommandExecutor<SlowCommand>
     {
-        public ProcessResult ExecuteCommand(ICommandService commandService, SlowCommand command)
+        public override ProcessResult ExecuteCommand(ICommandService commandService, SlowCommand command)
         {
             int sleepFor = 1500;
 
@@ -41,15 +41,6 @@ namespace Radiator.Tests.Bits
                 Successful = true,
                 Message = string.Format("Executor ran for {0} miliseconds", sleepFor)
             };
-        }
-
-        public ProcessResult OnException<TException>(TException exception, SlowCommand command) where TException : Exception
-        {
-            return new ProcessResult()
-                       {
-                           Successful = false,
-                           Message = "The shit hit the van"
-                       };
         }
     }
    

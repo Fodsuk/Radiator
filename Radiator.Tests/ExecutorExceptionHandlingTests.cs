@@ -20,7 +20,7 @@ namespace Radiator.Tests
 
             ObjectFactory.Configure(x =>
             {
-                x.For<ICommandExecutor<CommandThrowsException>>().Use<ExecutorThrowsException>();
+                x.For<CommandExecutor<CommandThrowsException>>().Use<ExecutorThrowsException>();
             });
 
             var resolver = new StructureMapDependancyResolver();

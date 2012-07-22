@@ -5,7 +5,7 @@ namespace Radiator.Core
 {
     public interface ICommandService
     {
-        ProcessResult Execute<TCommand>(TCommand command) where TCommand : ICommand;
-        Task<ProcessResult> ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand;
+        ProcessResult Execute<TCommand>(TCommand command) where TCommand : Command;
+        Task<ProcessResult> ExecuteAsync<TCommand>(TCommand command) where TCommand : Command;
     }
 }

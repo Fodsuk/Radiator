@@ -14,12 +14,12 @@ namespace Radiator.Core
             _resolver = resolver;
         }
 
-        public ICommandValidator<TCommand> GetValidatorForCommand<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandValidator<TCommand> GetValidatorForCommand<TCommand>(TCommand command) where TCommand : Command
         {
             return _resolver.GetValidator(command);
         }
 
-        public ICommandExecutor<TCommand> GetExecutorForCommand<TCommand>(TCommand command) where TCommand : ICommand
+        public CommandExecutor<TCommand> GetExecutorForCommand<TCommand>(TCommand command) where TCommand : Command
         {
             return _resolver.GetExecutor(command);
         }

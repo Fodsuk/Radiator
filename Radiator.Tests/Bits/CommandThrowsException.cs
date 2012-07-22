@@ -4,18 +4,16 @@ using Radiator.Core.Commanding;
 
 namespace Radiator.Tests.Bits
 {
-    public class CommandThrowsException : ICommand { }
+    public class CommandThrowsException : Command { }
 
-    public class ExecutorThrowsException : ICommandExecutor<CommandThrowsException>
+    public class ExecutorThrowsException : CommandExecutor<CommandThrowsException>
     {
-        public ProcessResult ExecuteCommand(ICommandService commandService, CommandThrowsException command)
+        public override ProcessResult ExecuteCommand(ICommandService commandService, CommandThrowsException command)
         {
             throw new NotImplementedException("NotImplementedException thrown in executor");
         }
-
-
-
-        public ProcessResult OnException<T>(T exception, CommandThrowsException command) where T : Exception
+        
+        public override ProcessResult OnException<T>(T exception, CommandThrowsException command)
         {
             if (exception is NotImplementedException)
             {
