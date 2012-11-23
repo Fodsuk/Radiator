@@ -14,7 +14,7 @@ Contact
 --------------------
 Any suggestions? moans? or questions? 
 Twitter: @_MikeRodda 
-Mail: fodsuk@hotmail.com
+Mail: fodsuk at hotmail dot com
 Git: https://github.com/Fodsuk/Radiator
 
 
