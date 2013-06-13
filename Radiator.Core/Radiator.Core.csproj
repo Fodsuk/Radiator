@@ -49,7 +49,6 @@
     <Compile Include="ProcessResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commanding\CommandValidator.cs" />
-    <Compile Include="Validation\ValidationError.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

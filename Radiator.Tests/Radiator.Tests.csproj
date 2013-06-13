@@ -62,11 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutorExceptionHandlingTests.cs" />
     <Compile Include="SpeedAsyncComparisonTests.cs" />
-    <Compile Include="Validation\TestCommand.cs" />
-    <Compile Include="Validation\TestExecutor.cs" />
-    <Compile Include="Validation\TestValidationErrors.cs" />
-    <Compile Include="Validation\TestValidator.cs" />
-    <Compile Include="Validation\ValidationErrorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Radiator.Core\Radiator.Core.csproj">
