@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Radiator.Core;
-using Radiator.Core.Commanding;
 using Radiator.Tests.Bits;
 using StructureMap;
 
@@ -60,3 +61,4 @@ namespace Radiator.Tests
         }
     }
 }
+*/

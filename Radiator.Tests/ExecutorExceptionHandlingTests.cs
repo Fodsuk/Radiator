@@ -1,10 +1,10 @@
-﻿using System;
+﻿/*
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Radiator.Core;
-using Radiator.Core.Commanding;
 using Radiator.Tests.Bits;
 using StructureMap;
 
@@ -35,3 +35,5 @@ namespace Radiator.Tests
     }
 
 }
+
+*/

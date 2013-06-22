@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Radiator.Core.Commanding;
 
 namespace Radiator.Core
 {
@@ -17,47 +16,38 @@ namespace Radiator.Core
             _config = config;
         }
 
-
-        public ProcessResult Execute<TCommand>(TCommand command) where TCommand : Command
+        public ValidationResult<TCommand> Execute<TCommand>(TCommand command) where TCommand : Command
         {
             var validationResult = ProcessValidator(command);
 
-            if (validationResult.Successful == false) return validationResult;
- 
-            return  ProcessExecutor(command);
+            return validationResult;
         }
 
-        public Task<ProcessResult> ExecuteAsync<TCommand>(TCommand command) where TCommand : Command
+        public Task<ValidationResult<TCommand>> ExecuteAsync<TCommand>(TCommand command) where TCommand : Command
         {
-            return Task<ProcessResult>.Factory.StartNew(() => Execute(command));
+            return Task<ValidationResult<TCommand>>.Factory.StartNew(() => Execute(command));
         }
 
-        
-        internal ProcessResult ProcessExecutor<TCommand>(TCommand command) where TCommand : Command
+        internal void ProcessExecutor<TCommand>(TCommand command) where TCommand : Command
         {
             var executor = _config.GetExecutorForCommand(command);
 
             if (executor == null)
                 throw new Exception(string.Format("No executor found for {0}", command.GetType().FullName));
-
-            try
-            {
-                return executor.ExecuteCommand(this, command);
-            }
-            catch (Exception e)
-            {
-               return executor.OnException(e, command);
-            }
+            
+            executor.ExecuteCommand(this, command);
         }
 
-        internal ProcessResult ProcessValidator<TCommand>(TCommand command) where TCommand : Command
+        internal ValidationResult<TCommand> ProcessValidator<TCommand>(TCommand command) where TCommand : Command
         {
             var validator = _config.GetValidatorForCommand(command);
 
             if (validator == null)
-                return new ProcessResult() { Successful = true };
+                return new ValidationResult<TCommand>(new ValidationContext<TCommand>());
 
-            return validator.ValidateCommand(command);
+            var context = validator.ValidationContext;
+
+            return new ValidationResult<TCommand>(context);            
         }
     }
 

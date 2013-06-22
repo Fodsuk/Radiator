@@ -50,18 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncCommandExecutionTests.cs" />
-    <Compile Include="Bits\CommandThrowsException.cs" />
-    <Compile Include="Bits\ExampleCommand.cs" />
-    <Compile Include="Bits\CommandWithAsyncSubCommand.cs" />
-    <Compile Include="Bits\CommandWithSubCommand.cs" />
-    <Compile Include="Bits\MockDependencyResolver.cs" />
-    <Compile Include="Bits\SlowCommand.cs" />
-    <Compile Include="Bits\StructureMapDependancyResolver.cs" />
     <Compile Include="NestedCommandExecutionTests.cs" />
     <Compile Include="ResolvingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutorExceptionHandlingTests.cs" />
     <Compile Include="SpeedAsyncComparisonTests.cs" />
+    <Compile Include="ValidationContextTests\Error1.cs" />
+    <Compile Include="ValidationContextTests\Error2.cs" />
+    <Compile Include="ValidationContextTests\ExampleCommand.cs" />
+    <Compile Include="ValidationContextTests\ValidationContextHasErrorTests.cs" />
+    <Compile Include="ValidationContextTests\ValidationContextBaseTests.cs" />
+    <Compile Include="ValidatorTests\ValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Radiator.Core\Radiator.Core.csproj">

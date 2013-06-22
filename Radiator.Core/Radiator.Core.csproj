@@ -40,15 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commanding\Command.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="CommandExecutor.cs" />
     <Compile Include="CommandService.cs" />
+    <Compile Include="CommandValidator.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Commanding\CommandExecutor.cs" />
+    <Compile Include="BaseCommandExecutor.cs" />
     <Compile Include="ICommandService.cs" />
     <Compile Include="IDependencyResolver.cs" />
     <Compile Include="ProcessResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commanding\CommandValidator.cs" />
+    <Compile Include="BaseCommandValidator.cs" />
+    <Compile Include="ValidationContext.cs" />
+    <Compile Include="ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
