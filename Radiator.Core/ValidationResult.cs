@@ -26,6 +26,11 @@ namespace Radiator.Core
             return _context.HasError<TError>(expression);
         }
 
+        public bool HasError(Expression<Func<TCommand, object>> expression)
+        {
+            return _context.HasError<object>(expression);
+        }
+        
         public TError GetError<TError>() where TError : class
         {
             return _context.GetError<TError>();

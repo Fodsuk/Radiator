@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Radiator.Core
 {
-    public class Configuration
+    public class CommandServiceConfiguration
     {
-        private IDependencyResolver _resolver;
+        private readonly ICommandDependencyResolver _resolver;
 
-        public Configuration(IDependencyResolver resolver)
+        public CommandServiceConfiguration(ICommandDependencyResolver resolver)
         {
             _resolver = resolver;
         }

@@ -1,36 +1,27 @@
-﻿/*
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Radiator.Core;
-using Radiator.Tests.Bits;
-using StructureMap;
 
 namespace Radiator.Tests
 {
     [TestClass]
-    public class NestedCommandExecutionTests
+    public class NestedCommandExecutionTests : BaseTests
     {
         [TestMethod]
         public void Nested_Command_Is_Called()
         {
-            string subCommandExecMsg = "Sub Command Executed";
-
-            ObjectFactory.Configure(x => {
-                x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test");
-                x.For<CommandValidator<CommandWithSubCommand>>().Use<ValidatorWithSubCommand>();
-
-                x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
-                x.For<CommandExecutor<CommandWithSubCommand>>().Use<ExecutorWithSubCommand>();
-
+            var subExecutorMock = new Mock<EmptyExecutor>();
+            
+            CommandService service = BuildCommandService(x =>
+            {
+                x.For<CommandExecutor<SampleCommand2>>().Use<ExecutorWithSubExecution>();
+                x.For<CommandExecutor<SampleCommand>>().Use(subExecutorMock.Object);
             });
 
-            var resolver = new StructureMapDependancyResolver();
-            var commandService = new CommandService(new Configuration(resolver));
-         
-            var result = commandService.Execute(new CommandWithSubCommand());
+            service.Execute(new SampleCommand2());
 
-            string expectedMsg = string.Format("Sub command message: {0}", subCommandExecMsg);
-
-            Assert.AreEqual(result.Message, expectedMsg);
+            subExecutorMock.Verify(executor => 
+                executor.ExecuteCommand(It.IsAny<ICommandService>(), It.IsAny<SampleCommand>()),Times.Once());
         }
 
     }
@@ -38,4 +29,3 @@ namespace Radiator.Tests
    
 }
 
-*/

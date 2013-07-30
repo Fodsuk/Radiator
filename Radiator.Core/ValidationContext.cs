@@ -8,7 +8,7 @@ namespace Radiator.Core
 {
     public class ValidationContext<TCommand>
     {
-        private Dictionary<string, dynamic> _errors = new Dictionary<string, dynamic>();
+        private readonly Dictionary<string, dynamic> _errors = new Dictionary<string, dynamic>();
 
         public bool HasErrors { get { return _errors.Any(); } }
 
@@ -29,6 +29,9 @@ namespace Radiator.Core
         {
             if (error == null)
                 throw new ArgumentNullException("error", "An error is required.");
+
+            if(expression == null)
+                throw new ArgumentNullException("expression", "A command property is required to add an error.");
 
             CheckExpression(expression);
 
@@ -63,8 +66,8 @@ namespace Radiator.Core
 
             if (_errors.TryGetValue(identifer, out error))
                 return error as TError;
-            else
-                return (TError)null;
+            
+            return null;
         }
 
         public TError GetErrorFor<TError>(Expression<Func<TCommand, object>> expression) where TError : class
@@ -75,11 +78,9 @@ namespace Radiator.Core
 
             if (_errors.TryGetValue(identifer, out error))
                 return error as TError;
-            else
-                return (TError)null;
+            
+            return null;
         }
-
-
 
         private void CheckExpression(Expression<Func<TCommand, object>> expression)
         {

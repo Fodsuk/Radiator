@@ -6,11 +6,13 @@ using System.Text;
 
 namespace Radiator.Core
 {
-    public abstract class CommandValidator<TCommand> : BaseCommandValidator<TCommand> where TCommand : Command
+    public abstract class CommandValidator<TCommand> where TCommand : Command
     {
         ValidationContext<TCommand> _context = new ValidationContext<TCommand>();
 
         public ValidationContext<TCommand> ValidationContext { get{return _context;} }
+
+        public abstract void ValidateCommand(TCommand command);
 
         public void AddError<TError>(TError error) where TError : class
         {
@@ -21,8 +23,6 @@ namespace Radiator.Core
         {
             _context.AddErrorFor(error, expression);          
         }
-
-
     }
 }
 

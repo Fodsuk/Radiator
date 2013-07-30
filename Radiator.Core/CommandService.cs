@@ -9,16 +9,28 @@ namespace Radiator.Core
 {
     public class CommandService : ICommandService
     {
-        private Configuration _config;
+        private CommandServiceConfiguration _config;
 
-        public CommandService(Configuration config)
+        public CommandService(CommandServiceConfiguration config)
         {
             _config = config;
         }
 
         public ValidationResult<TCommand> Execute<TCommand>(TCommand command) where TCommand : Command
         {
-            var validationResult = ProcessValidator(command);
+            var validator = GetValidator(command);
+            var validationResult = new ValidationResult<TCommand>(new ValidationContext<TCommand>());
+
+            if (validator != null)
+            {
+                validator.ValidateCommand(command);
+                validationResult = new ValidationResult<TCommand>(validator.ValidationContext);
+
+                if (validator.ValidationContext.HasErrors)
+                    return validationResult;
+            }
+
+            ProcessExecutor(command);
 
             return validationResult;
         }
@@ -34,20 +46,15 @@ namespace Radiator.Core
 
             if (executor == null)
                 throw new Exception(string.Format("No executor found for {0}", command.GetType().FullName));
-            
+
             executor.ExecuteCommand(this, command);
         }
 
-        internal ValidationResult<TCommand> ProcessValidator<TCommand>(TCommand command) where TCommand : Command
+        internal CommandValidator<TCommand> GetValidator<TCommand>(TCommand command) where TCommand : Command
         {
             var validator = _config.GetValidatorForCommand(command);
 
-            if (validator == null)
-                return new ValidationResult<TCommand>(new ValidationContext<TCommand>());
-
-            var context = validator.ValidationContext;
-
-            return new ValidationResult<TCommand>(context);            
+            return validator;
         }
     }
 
