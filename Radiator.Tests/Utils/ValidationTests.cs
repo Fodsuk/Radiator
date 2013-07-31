@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Radiator.Core;
 
-namespace Radiator.Tests
+namespace Radiator.Tests.Utils
 {
 
     [TestFixture]

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Radiator.Core;
+﻿using Radiator.Core;
 
-namespace Radiator.Tests
+namespace Radiator.Tests.Utils
 {
     public class ExecutorWithSubExecution : CommandExecutor<SampleCommand2>
     {

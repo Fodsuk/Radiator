@@ -1,64 +1,58 @@
-﻿/*
-
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Radiator.Core;
-using Radiator.Tests.Bits;
+using Radiator.Tests.Utils;
 using StructureMap;
 
 namespace Radiator.Tests
 {
     [TestClass]
-    public class AsyncCommandExecutionTests
+    public class AsyncCommandExecutionTests  : BaseTests
     {
         [TestMethod]
         public void Test_Async_CommandExecute_With_Syncronous_Subcommand()
         {
-            string subCommandExecMsg = "Sub Command Executed";
+            var subExecutorMock = new Mock<EmptyExecutor>();
 
-            ObjectFactory.Configure(x =>
+            CommandService service = BuildCommandService(x =>
             {
-                x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test");
-                x.For<CommandValidator<CommandWithSubCommand>>().Use<ValidatorWithSubCommand>();
-
-                x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
-                x.For<CommandExecutor<CommandWithSubCommand>>().Use<ExecutorWithSubCommand>();
-
+                x.For<CommandExecutor<SampleCommand2>>().Use<ExecutorWithSubExecution>();
+                x.For<CommandExecutor<SampleCommand>>().Use(subExecutorMock.Object);
             });
 
-            var resolver = new StructureMapDependancyResolver();
-            var commandService = new CommandService(new Configuration(resolver));
+            Task<ValidationResult<SampleCommand2>> task  = service.ExecuteAsync(new SampleCommand2());
 
-            var result = commandService.ExecuteAsync(new CommandWithSubCommand());
-
-            string expectedMsg = string.Format("Sub command message: {0}", subCommandExecMsg);
-
-            Assert.AreEqual(result.Result.Message, expectedMsg);
+            task.Wait();
+            
+            subExecutorMock.Verify(
+                executor => executor.ExecuteCommand(It.IsAny<ICommandService>(), It.IsAny<SampleCommand>()),
+                Times.Once()
+                );
+            
         }
+
 
         [TestMethod]
         public void Test_Async_CommandExecute_With_Async_Subcommand()
         {
-            string subCommandExecMsg = "Sub Command Executed";
+            var subExecutorMock = new Mock<EmptyExecutor>();
 
-            ObjectFactory.Configure(x =>
+            CommandService service = BuildCommandService(x =>
             {
-                x.For<CommandValidator<ExampleCommand>>().Use<ExampleCommandValidator>().Ctor<string>("msg").Is("test");
-                x.For<CommandValidator<CommandWithAsyncSubCommand>>().Use<ValidatorWithAsyncSubCommand>();
-
-                x.For<CommandExecutor<ExampleCommand>>().Use<ExampleCommandExecutor>().Ctor<string>("msg").Is(subCommandExecMsg);
-                x.For<CommandExecutor<CommandWithAsyncSubCommand>>().Use<ExecutorWithAsyncSubCommand>();
-
+                x.For<CommandExecutor<SampleCommand2>>().Use<ExecutorWithSubAsycExecution>();
+                x.For<CommandExecutor<SampleCommand>>().Use(subExecutorMock.Object);
             });
 
-            var resolver = new StructureMapDependancyResolver();
-            var commandService = new CommandService(new Configuration(resolver));
+            Task<ValidationResult<SampleCommand2>> task = service.ExecuteAsync(new SampleCommand2());
 
-            var result = commandService.ExecuteAsync(new CommandWithAsyncSubCommand());
+            task.Wait();
 
-            string expectedMsg = string.Format("Sub command message: {0}", subCommandExecMsg);
-
-            Assert.AreEqual(result.Result.Message, expectedMsg);
+            subExecutorMock.Verify(
+                executor => executor.ExecuteCommand(It.IsAny<ICommandService>(), It.IsAny<SampleCommand>()),
+                Times.Once()
+                );
         }
     }
 }
-*/

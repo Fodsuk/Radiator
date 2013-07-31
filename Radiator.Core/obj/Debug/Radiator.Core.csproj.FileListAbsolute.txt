@@ -2,3 +2,4 @@ C:\Users\Fods\Documents\GitHub\Radiator\Radiator.Core\bin\Debug\Radiator.Core.dl
 C:\Users\Fods\Documents\GitHub\Radiator\Radiator.Core\bin\Debug\Radiator.Core.pdb
 C:\Users\Fods\Documents\GitHub\Radiator\Radiator.Core\obj\Debug\Radiator.Core.dll
 C:\Users\Fods\Documents\GitHub\Radiator\Radiator.Core\obj\Debug\Radiator.Core.pdb
+C:\Users\Fods\Documents\GitHub\Radiator\Radiator.Core\obj\Debug\Radiator.Core.csprojResolveAssemblyReference.cache

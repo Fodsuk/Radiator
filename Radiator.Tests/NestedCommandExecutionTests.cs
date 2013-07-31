@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Radiator.Core;
+using Radiator.Tests.Utils;
 
 namespace Radiator.Tests
 {

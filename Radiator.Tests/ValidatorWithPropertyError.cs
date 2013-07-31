@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using Radiator.Core;
+using Radiator.Tests.Utils;
 
 namespace Radiator.Tests
 {

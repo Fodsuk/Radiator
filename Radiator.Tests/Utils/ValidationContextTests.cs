@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Radiator.Tests
+namespace Radiator.Tests.Utils
 {
     [TestClass]
     public class ValidationContextTests : BaseTests

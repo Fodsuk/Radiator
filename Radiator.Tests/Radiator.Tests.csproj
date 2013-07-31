@@ -57,21 +57,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncCommandExecutionTests.cs" />
-    <Compile Include="Error1.cs" />
-    <Compile Include="Error2.cs" />
-    <Compile Include="ExecutorWithSubExecution.cs" />
-    <Compile Include="SampleCommand.cs" />
-    <Compile Include="EmptyExecutor.cs" />
     <Compile Include="NestedCommandExecutionTests.cs" />
-    <Compile Include="EmptyValidator.cs" />
-    <Compile Include="ResolvingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleCommand2.cs" />
     <Compile Include="SpeedAsyncComparisonTests.cs" />
     <Compile Include="StructureMapDependancyResolver.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="ValidationContextTests.cs" />
-    <Compile Include="ValidationTests.cs" />
+    <Compile Include="Utils\EmptyExecutor.cs" />
+    <Compile Include="Utils\EmptyValidator.cs" />
+    <Compile Include="Utils\Error1.cs" />
+    <Compile Include="Utils\Error2.cs" />
+    <Compile Include="Utils\ExecutorWithSubAsycExecution.cs" />
+    <Compile Include="Utils\ExecutorWithSubExecution.cs" />
+    <Compile Include="Utils\SampleCommand.cs" />
+    <Compile Include="Utils\SampleCommand2.cs" />
+    <Compile Include="Utils\ValidationContextTests.cs" />
+    <Compile Include="Utils\ValidationTests.cs" />
     <Compile Include="ValidatorWithGeneralError.cs" />
     <Compile Include="ValidatorWithMultipleGeneralErrors.cs" />
     <Compile Include="ValidatorWithMultiplePropertiesThatHaveAnError.cs" />

@@ -1,7 +1,6 @@
-﻿using System;
-using Radiator.Core;
+﻿using Radiator.Core;
 
-namespace Radiator.Tests
+namespace Radiator.Tests.Utils
 {
     public class EmptyValidator : CommandValidator<SampleCommand> 
     {

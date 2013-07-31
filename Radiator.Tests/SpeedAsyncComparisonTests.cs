@@ -1,5 +1,4 @@
-﻿/*
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
@@ -8,55 +7,46 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Radiator.Core;
-using Radiator.Tests.Bits;
+using Radiator.Tests.Utils;
 using StructureMap;
 
 namespace Radiator.Tests
 {
+
     [TestClass]
-    public class SpeedAsyncComparisonTests
+    public class SpeedAsyncComparisonTests : BaseTests
     {
         [TestMethod]
-        public void async_execution_start_is_faster_than_sync()
+        public void Execute_AsyncVsSync_AsyncIsFaster()
         {
-            var slowCommand1 = new SlowCommand();
-            var slowCommand2 = new SlowCommand();
-            var slowCommand3 = new SlowCommand();
 
-            ObjectFactory.Configure(x =>
-                                        {
-                                            x.For<CommandValidator<SlowCommand>>().Use<SlowValidator>();
-                                            x.For<CommandExecutor<SlowCommand>>().Use<SlowExecutor>();
-                                        });
 
-            var resolver = new StructureMapDependancyResolver();
-            var commandService = new CommandService(new Configuration(resolver));
+            var commandService = BuildCommandService(x => x.For<CommandExecutor<SampleCommand>>().Use<EmptyExecutor>());
 
             var syncWatch = new Stopwatch();
             syncWatch.Start();
 
-            var syncResult1 = commandService.Execute(slowCommand1);
-            var syncResult2 = commandService.Execute(slowCommand2);
-            var syncResult3 = commandService.Execute(slowCommand3);
+            commandService.Execute(new SampleCommand());
+            commandService.Execute(new SampleCommand());
+            commandService.Execute(new SampleCommand());
 
             syncWatch.Stop();
 
-            
+
             var asyncWatch = new Stopwatch();
             asyncWatch.Start();
 
-            var asyncResult1 = commandService.ExecuteAsync(slowCommand1);
-            var asyncResult2 = commandService.ExecuteAsync(slowCommand2);
-            var asyncResult3 = commandService.ExecuteAsync(slowCommand3);
+            var asyncResult = commandService.ExecuteAsync(new SampleCommand());
+            var asyncResult2 = commandService.ExecuteAsync(new SampleCommand());
+            var asyncResult3 = commandService.ExecuteAsync(new SampleCommand());
 
-            Task.WaitAll(asyncResult1, asyncResult2, asyncResult3);
+            Task.WaitAll(asyncResult, asyncResult2, asyncResult3);
 
             asyncWatch.Stop();
-            
+
             Assert.IsTrue(syncWatch.Elapsed > asyncWatch.Elapsed);
         }
     }
 }
 
 
-*/
