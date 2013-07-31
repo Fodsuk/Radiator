@@ -33,7 +33,7 @@ namespace Radiator.Tests.Utils
             var result = service.Execute(new SampleCommand());
 
             Assert.IsTrue(result.HasErrors);
-            Assert.IsTrue(result.HasError<Error1>(cmd => cmd.Age));
+            Assert.IsTrue(result.HasErrorFor<Error1>(cmd => cmd.Age));
 
         }
 
@@ -64,8 +64,8 @@ namespace Radiator.Tests.Utils
             var result = service.Execute(new SampleCommand());
 
             Assert.IsTrue(result.HasErrors);
-            Assert.IsTrue(result.HasError<Error1>(cmd => cmd.Age));
-            Assert.IsTrue(result.HasError<Error2>(cmd => cmd.FirstName));
+            Assert.IsTrue(result.HasErrorFor<Error1>(cmd => cmd.Age));
+            Assert.IsTrue(result.HasErrorFor<Error2>(cmd => cmd.FirstName));
         }
 
         [Test]

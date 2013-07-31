@@ -1,6 +1,8 @@
 [Bb]in
 [Oo]bj
 [Dd]ebug
+bin\Debug
+obj\Debug
 [Tt]est[Rr]esults
 *.suo
 *.user

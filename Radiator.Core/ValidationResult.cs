@@ -21,12 +21,12 @@ namespace Radiator.Core
             return _context.HasError<TError>();
         }
 
-        public bool HasError<TError>(Expression<Func<TCommand, object>> expression) where TError : class
+        public bool HasErrorFor<TError>(Expression<Func<TCommand, object>> expression) where TError : class
         {
             return _context.HasError<TError>(expression);
         }
 
-        public bool HasError(Expression<Func<TCommand, object>> expression)
+        public bool HasErrorFor(Expression<Func<TCommand, object>> expression)
         {
             return _context.HasError<object>(expression);
         }
