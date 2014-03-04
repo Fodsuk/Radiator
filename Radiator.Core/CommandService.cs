@@ -18,6 +18,10 @@ namespace Radiator.Core
 
         public ValidationResult<TCommand> Execute<TCommand>(TCommand command) where TCommand : Command
         {
+            if(command == null) throw new  ArgumentNullException("command");
+
+            command.SetCommandReference();
+
             var validator = GetValidator(command);
             var validationResult = new ValidationResult<TCommand>(new ValidationContext<TCommand>());
 
